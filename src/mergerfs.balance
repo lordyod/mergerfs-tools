@@ -215,6 +215,12 @@ def buildargparser():
                         type=str,
                         default='0',
                         help='exclude files larger than <int>[KMGT] bytes')
+    parser.add_argument('-b','--exclude-branch',
+                        dest='excludebranch',
+                        type=str,
+                        action='append',
+                        default=[],
+                        help='merge branch to exclude as target (can use multiple times)')
     return parser
 
 
@@ -250,6 +256,9 @@ def main():
     exclude_lt    = human_to_bytes(args.excludelt)
     exclude_gt    = human_to_bytes(args.excludegt)
     srcmounts     = mergerfs_srcmounts(ctrlfile)
+    excludebranch = [] if not args.excludebranch else args.excludebranch
+    for branch in excludebranch:
+        srcmounts.remove(branch.rstrip('/'))
     percentage    = args.percentage / 100
 
     try:

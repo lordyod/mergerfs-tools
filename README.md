@@ -172,7 +172,7 @@ Run as `root`. Requires `rsync` to be installed.
 ```
 usage: mergerfs.balance [-h] [-p PERCENTAGE] [-i INCLUDE] [-e EXCLUDE]
                         [-I INCLUDEPATH] [-E EXCLUDEPATH] [-s EXCLUDELT]
-                        [-S EXCLUDEGT]
+                        [-S EXCLUDEGT] [-b EXCLUDEBRANCH]
                         dir
 
 balance files on a mergerfs mount based on percentage drive filled
@@ -197,6 +197,10 @@ optional arguments:
                         times)
   -s EXCLUDELT          exclude files smaller than <int>[KMGT] bytes
   -S EXCLUDEGT          exclude files larger than <int>[KMGT] bytes
+  -b EXCLUDEBRANCH, --exclude-branch EXCLUDEBRANCH
+                        merge branch to exclude as target (can use
+                        multiple times)
+
 
 # mergerfs.balance /media
 from: /mnt/drive1/foo/bar
